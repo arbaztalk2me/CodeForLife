@@ -1,0 +1,27 @@
+#include<stdio.h>
+int main()
+{
+    float unit=350;
+    float rate;
+    if(unit<=100) 
+        rate=100;
+    else if (unit<=200){
+        rate=(unit-100)*2+100;
+    }
+    else if (unit<=300){
+        rate=(unit-200)*3+300;
+    }
+    else if(unit<=500)
+    {
+        rate=(unit-300)*4+600;
+    }
+    else
+    {
+        rate=(unit-500)*5+1400;
+    }
+   
+    float bill = rate+50;
+     bill= bill + bill*0.1;
+    printf("%f",bill);
+
+}
