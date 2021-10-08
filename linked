@@ -1,0 +1,67 @@
+#include<iostream>
+using namespace std;
+#include "intro.cpp"
+
+Node *takeInput()
+{
+    int data;
+    cout << "Enter the values: "<<endl;
+    cin >> data;
+    Node *head = NULL;
+    Node *tail = NULL;
+    while (data != -1)
+    {
+        Node *newNode = new Node(data);
+        if(head == NULL)
+        {
+            head = newNode;
+            tail = newNode;
+        }
+        else
+        {
+            tail -> next = newNode;
+            tail = newNode;
+        }
+        cin >> data;
+    }
+    return head;
+}
+
+Node *deleteRec(Node *head, int i)
+{
+    Node *temp = head;
+    if(head == NULL)
+    {
+        return head;
+    }
+    if(i == 0)
+    {
+        head = temp -> next;
+        delete temp;
+        return head;
+    }
+    Node *x = deleteRec(head ->next, i-1);
+    head ->next = x;
+    return head;
+}
+
+void print(Node *head)   // change the case of head to print the static or dynamic code
+{
+    //Node *temp = head;  //use another variable then head to traverse it save to loose head address
+    while(head != NULL)
+    {
+        cout << head -> data << " ";
+        head =  head-> next;
+    }
+}
+
+int main()
+{
+    Node *head = takeInput();
+    print(head);
+
+    int i;
+    cin >> i;
+    head = deleteRec(head, i);
+    print(head);
+}
